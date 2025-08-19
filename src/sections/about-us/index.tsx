@@ -12,7 +12,7 @@ const AboutUsSection = ({
 }: AboutUsSectionProps) => {
   return (
     <section
-      id="about"
+      id="about-us"
       className={`section section-3 ${currentSection === 3 ? "active" : ""}`}
     >
       <Container>

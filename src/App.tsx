@@ -10,6 +10,8 @@ import Cursor from "./components/CustomCursor";
 import { throttle } from "lodash";
 import Stars from "./components/Stars";
 import ContactSection from "./sections/contact";
+import { sectionsData } from "./data";
+import type { TSection } from "./types";
 
 const App = () => {
   const [cursorPos, setCursorPos] = React.useState({ x: 0, y: 0 });
@@ -25,8 +27,7 @@ const App = () => {
   }, []);
 
   const scrollToSection = React.useCallback((index: number) => {
-    const ids = ["home", "our-services", "navbar", "about", "contact"];
-    const id = ids[index];
+    const id = sectionsData?.[index]?.id;
     const el = id ? document.getElementById(id) : null;
     if (!el) return;
 
@@ -39,9 +40,10 @@ const App = () => {
   }, []);
 
   React.useEffect(() => {
-    const sections = ["home", "our-services", "navbar", "about", "contact"]
+    const ids: string[] = sectionsData?.map((d: TSection) => d.id ?? "") || [];
+    const sections = ids
       .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+      .filter((el): el is HTMLElement => !!el);
 
     const onScroll = () => {
       const navH = (document.getElementById("navbar")?.offsetHeight ?? 0) + 16;
@@ -58,9 +60,12 @@ const App = () => {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("load", onScroll); // if images/fonts shift layout
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("load", onScroll);
     };
   }, []);
 

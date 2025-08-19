@@ -6,8 +6,8 @@ export const sectionsData: TSection[] = [
     label: "Home",
   },
   {
-    id: "services",
-    label: "Services",
+    id: "our-services",
+    label: "Our Services",
   },
   {
     id: "our-team",
