@@ -1,4 +1,10 @@
 import React from "react";
+import AOS from "aos";
+import { throttle } from "lodash";
+import "aos/dist/aos.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import NavbarSection from "./sections/navbar";
 import NavigationDots from "./components/NavigationDots";
 import HomeSection from "./sections/home";
@@ -6,7 +12,6 @@ import OurTeamSection from "./sections/our-team";
 import AboutUsSection from "./sections/about-us";
 import OurServicesSection from "./sections/our-services";
 import Cursor from "./components/CustomCursor";
-import { throttle } from "lodash";
 import Stars from "./components/Stars";
 import ContactSection from "./sections/contact";
 import { sectionsData } from "./data";
@@ -16,18 +21,12 @@ const sectionIds: string[] =
   sectionsData?.map((d: TSection) => d.id ?? "") || [];
 
 const App = () => {
+  // Use States
   const [cursorPos, setCursorPos] = React.useState({ x: 0, y: 0 });
   const [cursorHover, setCursorHover] = React.useState(false);
   const [currentSection, setCurrentSection] = React.useState<number>(0);
 
-  React.useEffect(() => {
-    const handleMouseMove = throttle((e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    }, 16);
-    document.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
+  // Use Callbacks
   const scrollToSection = React.useCallback((index: number) => {
     const id = sectionIds[index];
     const el = id ? document.getElementById(id) : null;
@@ -39,6 +38,24 @@ const App = () => {
 
     window.scrollTo({ top, behavior: "smooth" });
     setCurrentSection(index);
+  }, []);
+
+  // Use Effects
+  React.useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: false,
+      mirror: false,
+    });
+  }, []);
+
+  React.useEffect(() => {
+    const handleMouseMove = throttle((e: MouseEvent) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+    }, 16);
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => document.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   React.useEffect(() => {
@@ -77,6 +94,7 @@ const App = () => {
         <Cursor cursorHover={cursorHover} cursorPos={cursorPos} />
 
         <NavbarSection
+          data-aos="fade-down"
           scrollToSection={scrollToSection}
           setCursorHover={setCursorHover}
           currentSection={currentSection}

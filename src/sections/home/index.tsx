@@ -12,17 +12,25 @@ const HomeSection = ({ currentSection, scrollToSection }: HomeSectionProps) => {
     <section
       id="home"
       className={`section section-0 ${currentSection === 0 ? "active" : ""}`}
+      data-aos="fade-down"
     >
       <Container className="text-center">
-        <div className="big-x mt-md-5">X</div>
-        <h1 className="display-3 hero-title">Architects of Tomorrow</h1>
-        <p className="lead mx-auto mb-5 section-lead">
+        <div className="big-x mt-md-5" data-aos="fade-down">
+          X
+        </div>
+        <h1 className="display-3 hero-title" data-aos="fade-down">
+          Architects of Tomorrow
+        </h1>
+        <p className="lead mx-auto mb-5 section-lead" data-aos="fade-down">
           We craft bold digital experiences with precision, performance, and
           minimalist elegance. Where vision meets execution, Xelvian transforms
           ideas into extraordinary realities.
         </p>
 
-        <div className="d-flex gap-3 justify-content-center flex-wrap">
+        <div
+          className="d-flex gap-3 justify-content-center flex-wrap"
+          data-aos="fade-down"
+        >
           <Button
             onClick={() => scrollToSection(1)}
             className="btn custom-btn btn-primary-custom rounded-0 border-2 py-3 px-5"

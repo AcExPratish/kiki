@@ -23,21 +23,28 @@ const NavbarSection = ({
   };
 
   return (
-    <Navbar id="navbar" fixed="top" className="custom-navbar px-4 px-md-5 py-3">
+    <Navbar
+      id="navbar"
+      fixed="top"
+      className="custom-navbar px-4 px-md-5 py-3"
+      data-aos="fade-down"
+    >
       <Navbar.Brand
         onClick={() => goTo(0)}
         onMouseEnter={() => setCursorHover(true)}
         onMouseLeave={() => setCursorHover(false)}
         className="brand"
+        data-aos="fade-down"
       >
         <div className="logo-x">X</div>
         XELVIAN
       </Navbar.Brand>
 
       {/* Desktop */}
-      <Nav className="ms-auto gap-4 d-none d-md-flex">
+      <Nav className="ms-auto gap-4 d-none d-md-flex" data-aos="fade-down">
         {sectionsData?.map((item: TSection, index: number) => (
           <Nav.Link
+            data-aos="fade-down"
             key={item.id ?? index}
             onClick={() => goTo(index)}
             onMouseEnter={() => setCursorHover(true)}
@@ -53,6 +60,7 @@ const NavbarSection = ({
 
       {/* Mobile hamburger */}
       <Button
+        data-aos="fade-down"
         variant="outline-light"
         className="d-md-none ms-auto rounded-0 border-1"
         aria-controls="mobile-menu"

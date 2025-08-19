@@ -34,9 +34,10 @@ const ContactSection = ({ currentSection }: ContactSectionProps) => {
     <section
       id="contact"
       className={`section section-4 ${currentSection === 4 ? "active" : ""}`}
+      data-aos="fade-down"
     >
       <Container>
-        <div className="text-center mb-5">
+        <div className="text-center mb-5" data-aos="fade-down">
           <h2 className="display-5 fw-light letter-2">Contact Us</h2>
           <p className="section-lead mx-auto">
             Ready to build something extraordinary? Let's start the
@@ -44,8 +45,8 @@ const ContactSection = ({ currentSection }: ContactSectionProps) => {
           </p>
         </div>
 
-        <Row className="justify-content-center">
-          <Col md={8} lg={6}>
+        <Row className="justify-content-center" data-aos="fade-down">
+          <Col md={8} lg={6} data-aos="fade-down">
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-4">
                 <Form.Label className="form-label-light">Name</Form.Label>

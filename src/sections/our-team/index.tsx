@@ -13,9 +13,10 @@ const OurTeamSection = ({ currentSection }: OurTeamSectionProps) => {
     <section
       id="our-team"
       className={`section section-2 ${currentSection === 2 ? "active" : ""}`}
+      data-aos="fade-down"
     >
       <Container>
-        <div className="text-center mb-5">
+        <div className="text-center mb-5" data-aos="fade-down">
           <h2 className="display-5 fw-light letter-2">Our Team</h2>
           <p className="section-lead mx-auto">
             The visionaries and craftspeople behind every pixel, every line of
@@ -23,9 +24,9 @@ const OurTeamSection = ({ currentSection }: OurTeamSectionProps) => {
           </p>
         </div>
 
-        <Row className="g-4 justify-content-center">
+        <Row className="g-4 justify-content-center" data-aos="fade-down">
           {teamData?.map((member: TTeam, index: number) => (
-            <Col md={6} lg={3} key={index}>
+            <Col md={6} lg={3} key={index} data-aos="fade-down">
               <Card className="team-member h-100 text-center bg-transparent border-1">
                 <Card.Body className="p-4">
                   <div className="member-avatar">{member.avatar}</div>
