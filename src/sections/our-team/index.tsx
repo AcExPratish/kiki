@@ -11,7 +11,7 @@ interface OurTeamSectionProps {
 const OurTeamSection = ({ currentSection }: OurTeamSectionProps) => {
   return (
     <section
-      id="navbar"
+      id="our-team"
       className={`section section-2 ${currentSection === 2 ? "active" : ""}`}
     >
       <Container>

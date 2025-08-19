@@ -58,23 +58,18 @@ export const servicesData: TService[] = [
 
 export const teamData: TTeam[] = [
   {
-    name: "Alex Chen",
-    role: "Lead Architect & Founder",
+    name: "Pratish Joshi",
+    role: "Founder & CEO",
     avatar: "👨‍💻",
   },
   {
-    name: "Sarah Johnson",
-    role: "Creative Director",
+    name: "Shrishak Bhattarai",
+    role: "Founder & CTO",
     avatar: "👩‍💼",
   },
   {
-    name: "Mike Rodriguez",
-    role: "Technical Lead",
+    name: "Nikesh Nakarmi",
+    role: "Founder & COO",
     avatar: "👨‍🎨",
-  },
-  {
-    name: "Emma Wilson",
-    role: "Product Strategist",
-    avatar: "👩‍💻",
   },
 ];

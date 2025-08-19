@@ -14,7 +14,7 @@ const HomeSection = ({ currentSection, scrollToSection }: HomeSectionProps) => {
       className={`section section-0 ${currentSection === 0 ? "active" : ""}`}
     >
       <Container className="text-center">
-        <div className="big-x">X</div>
+        <div className="big-x mt-md-5">X</div>
         <h1 className="display-3 hero-title">Architects of Tomorrow</h1>
         <p className="lead mx-auto mb-5 section-lead">
           We craft bold digital experiences with precision, performance, and
