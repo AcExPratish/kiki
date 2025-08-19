@@ -287,6 +287,7 @@ body {
   background: transparent;
   color: var(--fg);
   border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: 400;
 }
 .btn-secondary-custom:hover {
   background: rgba(255, 255, 255, 0.1);
@@ -306,6 +307,7 @@ button,
   cursor: none !important;
   outline: none !important;
   box-shadow: none !important;
+  font-weight: 400 !important;
 }
 
 button:focus,
@@ -321,10 +323,12 @@ button:active,
   box-shadow: none !important;
   background-color: inherit !important; /* prevents browser color flash */
   color: inherit !important;
+  font-weight: 400 !important;
 }
 
 button::-moz-focus-inner {
   border: 0;
+  font-weight: 400 !important;
 }
 
 /* 7) CARDS (SERVICES & TEAM) --------------------------------------------- */
