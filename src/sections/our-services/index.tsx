@@ -1,0 +1,48 @@
+import React from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
+import { servicesData } from "../../data";
+import type { TService } from "../../types";
+
+interface OurServicesSectionProps {
+  currentSection: number;
+}
+
+const OurServicesSection = ({ currentSection }: OurServicesSectionProps) => {
+  return (
+    <section
+      id="our-services"
+      className={`section section-1 ${currentSection === 1 ? "active" : ""}`}
+    >
+      <Container>
+        <div className="text-center mb-5">
+          <h2 className="display-5 fw-light letter-2">Our Services</h2>
+          <p className="section-lead">
+            Cutting-edge solutions that transform visions into digital realities
+          </p>
+        </div>
+
+        <Row className="g-4">
+          {servicesData?.map((service: TService, index: number) => (
+            <Col md={6} lg={4} key={index}>
+              <Card className="service-card h-100 text-white bg-transparent border-1">
+                <Card.Body className="text-center p-4">
+                  <div className="service-icon" aria-hidden="true">
+                    {service.icon}
+                  </div>
+                  <Card.Title as="h3" className="h5 fw-light mb-3 letter-1">
+                    {service.title}
+                  </Card.Title>
+                  <Card.Text className="text-white-50">
+                    {service.desc}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </section>
+  );
+};
+
+export default OurServicesSection;
