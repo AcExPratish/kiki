@@ -7,7 +7,6 @@ interface ContactSectionProps {
 }
 
 const ContactSection = ({ currentSection }: ContactSectionProps) => {
-  // Form submission handler
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const button = (e.currentTarget.querySelector(
@@ -39,7 +38,7 @@ const ContactSection = ({ currentSection }: ContactSectionProps) => {
       <Container>
         <div className="text-center mb-5">
           <h2 className="display-5 fw-light letter-2">Contact Us</h2>
-          <p className="section-lead">
+          <p className="section-lead mx-auto">
             Ready to build something extraordinary? Let's start the
             conversation.
           </p>

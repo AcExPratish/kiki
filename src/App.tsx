@@ -9,6 +9,7 @@ import Cursor from "./components/CustomCursor";
 import { throttle } from "lodash";
 import { sectionsData } from "./data";
 import Stars from "./components/Stars";
+import ContactSection from "./sections/contact";
 
 const totalSections = sectionsData?.length || 0;
 
@@ -163,6 +164,7 @@ const App = () => {
           />
 
           {/* Contact */}
+          <ContactSection currentSection={currentSection} />
         </div>
       </div>
     </>

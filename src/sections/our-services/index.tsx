@@ -16,7 +16,7 @@ const OurServicesSection = ({ currentSection }: OurServicesSectionProps) => {
       <Container>
         <div className="text-center mb-5">
           <h2 className="display-5 fw-light letter-2">Our Services</h2>
-          <p className="section-lead">
+          <p className="section-lead mx-auto">
             Cutting-edge solutions that transform visions into digital realities
           </p>
         </div>
