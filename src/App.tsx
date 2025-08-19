@@ -1,7 +1,6 @@
-// App.tsx
 import React from "react";
 import NavbarSection from "./sections/navbar";
-import NavigationDots from "./components/NavigationDots"; // optional to keep; we’ll hide it for now
+import NavigationDots from "./components/NavigationDots";
 import HomeSection from "./sections/home";
 import OurTeamSection from "./sections/our-team";
 import AboutUsSection from "./sections/about-us";
@@ -12,6 +11,9 @@ import Stars from "./components/Stars";
 import ContactSection from "./sections/contact";
 import { sectionsData } from "./data";
 import type { TSection } from "./types";
+
+const sectionIds: string[] =
+  sectionsData?.map((d: TSection) => d.id ?? "") || [];
 
 const App = () => {
   const [cursorPos, setCursorPos] = React.useState({ x: 0, y: 0 });
@@ -27,7 +29,7 @@ const App = () => {
   }, []);
 
   const scrollToSection = React.useCallback((index: number) => {
-    const id = sectionsData?.[index]?.id;
+    const id = sectionIds[index];
     const el = id ? document.getElementById(id) : null;
     if (!el) return;
 
@@ -40,8 +42,7 @@ const App = () => {
   }, []);
 
   React.useEffect(() => {
-    const ids: string[] = sectionsData?.map((d: TSection) => d.id ?? "") || [];
-    const sections = ids
+    const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => !!el);
 
@@ -92,12 +93,16 @@ const App = () => {
             currentSection={currentSection}
             scrollToSection={scrollToSection}
           />
+
           <OurServicesSection currentSection={currentSection} />
+
           <OurTeamSection currentSection={currentSection} />
+
           <AboutUsSection
             currentSection={currentSection}
             scrollToSection={scrollToSection}
           />
+
           <ContactSection currentSection={currentSection} />
         </main>
       </div>
