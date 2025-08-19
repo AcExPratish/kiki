@@ -303,6 +303,7 @@ button,
 .custom-btn,
 .btn-primary-custom,
 .btn-secondary-custom {
+  cursor: none !important;
   outline: none !important;
   box-shadow: none !important;
 }
