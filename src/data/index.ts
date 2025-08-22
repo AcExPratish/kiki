@@ -9,10 +9,10 @@ export const sectionsData: TSection[] = [
     id: "our-services",
     label: "Our Services",
   },
-  {
-    id: "our-team",
-    label: "Our Team",
-  },
+  // {
+  //   id: "our-team",
+  //   label: "Our Team",
+  // },
   {
     id: "about-us",
     label: "About Us",

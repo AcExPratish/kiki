@@ -8,7 +8,7 @@ import "./App.css";
 import NavbarSection from "./sections/navbar";
 import NavigationDots from "./components/NavigationDots";
 import HomeSection from "./sections/home";
-import OurTeamSection from "./sections/our-team";
+// import OurTeamSection from "./sections/our-team";
 import AboutUsSection from "./sections/about-us";
 import OurServicesSection from "./sections/our-services";
 import Cursor from "./components/CustomCursor";
@@ -114,7 +114,7 @@ const App = () => {
 
           <OurServicesSection currentSection={currentSection} />
 
-          <OurTeamSection currentSection={currentSection} />
+          {/* <OurTeamSection currentSection={currentSection} /> */}
 
           <AboutUsSection
             currentSection={currentSection}
