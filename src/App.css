@@ -30,6 +30,38 @@
 }
 
 /* 1) BASE & LAYOUT -------------------------------------------------------- */
+@font-face {
+  font-family: "Neo Tech";
+  src: url("/fonts/neo-tech/NeoTech-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neo Tech";
+  src: url("/fonts/neo-tech/NeoTech-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neo Tech";
+  src: url("/fonts/neo-tech/NeoTech-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neo Tech";
+  src: url("/fonts/neo-tech/NeoTech-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body,
 #root {
@@ -39,16 +71,16 @@ body,
 
 html,
 body {
-  height: auto; /* allow natural document height */
+  height: auto;
 }
 
 body {
-  font-family: "Exo 2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: "Neo Tech", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   color: var(--fg);
   overflow-y: auto;
   overscroll-behavior-y: contain;
-  cursor: none; /* custom cursor */
+  cursor: none;
 }
 
 * {
