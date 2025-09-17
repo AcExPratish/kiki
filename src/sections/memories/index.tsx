@@ -4,6 +4,7 @@ import { memoriesData } from "../../data";
 import type { TMemory } from "../../types";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import photograph from "/audio/photograph.mp3";
 
 const MemoriesSection = () => {
   const [canPlay, setCanPlay] = React.useState(false);
@@ -39,7 +40,7 @@ const MemoriesSection = () => {
               </button>
             )}
 
-            <audio id="love-song" src="/audio/photograph.mp3" preload="auto" />
+            <audio id="love-song" src={photograph} preload="auto" />
           </div>
         </div>
 
