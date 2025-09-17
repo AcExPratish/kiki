@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import MemoriesSection from "./sections/memories";
 import Countdown from "./helper/countdown";
+import HomeSection from "./sections/home";
 
 const getTargetSep21 = () => {
   const now = new Date();
@@ -18,7 +19,8 @@ const getTargetSep21 = () => {
 const App = () => {
   const [targetDate] = React.useState(getTargetSep21);
   const [isDate, setIsDate] = React.useState(
-    () => Date.now() >= targetDate.getTime()
+    true
+    // () => Date.now() >= targetDate.getTime()
   );
   const [error, setError] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
@@ -27,7 +29,9 @@ const App = () => {
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     if (e.target.value === "12/19/2022") {
-      setViewContent(true);
+      setTimeout(() => {
+        setViewContent(true);
+      }, 500);
     } else {
       setError("Wrong! Try again! 😔");
     }
@@ -85,7 +89,12 @@ const App = () => {
             </div>
           )}
 
-          {isDate && viewContent && <MemoriesSection />}
+          {isDate && viewContent && (
+            <React.Fragment>
+              <HomeSection />
+              <MemoriesSection />
+            </React.Fragment>
+          )}
         </main>
       </div>
     </>
