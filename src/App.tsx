@@ -1,127 +1,58 @@
 import React from "react";
 import AOS from "aos";
-import { throttle } from "lodash";
 import "aos/dist/aos.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import NavbarSection from "./sections/navbar";
-import NavigationDots from "./components/NavigationDots";
-import HomeSection from "./sections/home";
-// import OurTeamSection from "./sections/our-team";
-import AboutUsSection from "./sections/about-us";
-import OurServicesSection from "./sections/our-services";
-import Cursor from "./components/CustomCursor";
-import Stars from "./components/Stars";
-import ContactSection from "./sections/contact";
-import { sectionsData } from "./data";
-import type { TSection } from "./types";
-
-const sectionIds: string[] =
-  sectionsData?.map((d: TSection) => d.id ?? "") || [];
+import MemoriesSection from "./sections/memories";
 
 const App = () => {
-  // Use States
-  const [cursorPos, setCursorPos] = React.useState({ x: 0, y: 0 });
-  const [cursorHover, setCursorHover] = React.useState(false);
-  const [currentSection, setCurrentSection] = React.useState<number>(0);
+  const [viewContent, setViewContent] = React.useState<boolean>(false);
+  const [password, setPassword] = React.useState<string>("");
+  const [error, setError] = React.useState<string>("");
 
-  // Use Callbacks
-  const scrollToSection = React.useCallback((index: number) => {
-    const id = sectionIds[index];
-    const el = id ? document.getElementById(id) : null;
-    if (!el) return;
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    if (e.target.value === "1219") {
+      setViewContent(true);
+    } else {
+      setError("You don't event know our anniversary date! 😔");
+    }
+  };
 
-    const nav = document.getElementById("navbar");
-    const offset = (nav?.offsetHeight ?? 0) + 8;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-
-    window.scrollTo({ top, behavior: "smooth" });
-    setCurrentSection(index);
+  React.useEffect(() => {
+    setViewContent(false);
   }, []);
 
-  // Use Effects
   React.useEffect(() => {
     AOS.init({
-      duration: 800,
-      easing: "ease-in-out",
+      duration: 1000,
       once: false,
-      mirror: false,
+      mirror: true,
     });
-  }, []);
-
-  React.useEffect(() => {
-    const handleMouseMove = throttle((e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    }, 16);
-    document.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  React.useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
-
-    const onScroll = () => {
-      const navH = (document.getElementById("navbar")?.offsetHeight ?? 0) + 16;
-      const y = window.scrollY + navH;
-      let active = 0;
-      sections.forEach((s, i) => {
-        const top = s.offsetTop;
-        const bottom = top + s.offsetHeight;
-        if (y >= top && y < bottom) active = i;
-      });
-      setCurrentSection(active);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    window.addEventListener("load", onScroll); // if images/fonts shift layout
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      window.removeEventListener("load", onScroll);
-    };
   }, []);
 
   return (
     <>
-      <Stars />
       <div className="page-root">
-        <Cursor cursorHover={cursorHover} cursorPos={cursorPos} />
-
-        <NavbarSection
-          data-aos="fade-down"
-          scrollToSection={scrollToSection}
-          setCursorHover={setCursorHover}
-          currentSection={currentSection}
-        />
-
-        <NavigationDots
-          currentSection={currentSection}
-          scrollToSection={scrollToSection}
-          setCursorHover={setCursorHover}
-        />
-
         <main className="main-container">
-          <HomeSection
-            currentSection={currentSection}
-            scrollToSection={scrollToSection}
-          />
+          {!viewContent ? (
+            <div className="d-flex align-items-center justify-content-center section w-100">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Hint: It's a date"
+                value={password}
+                onChange={handlePassword}
+                className="form-control w-25 py-2 border-romantic"
+              />
 
-          <OurServicesSection currentSection={currentSection} />
-
-          {/* <OurTeamSection currentSection={currentSection} /> */}
-
-          <AboutUsSection
-            currentSection={currentSection}
-            scrollToSection={scrollToSection}
-          />
-
-          <ContactSection currentSection={currentSection} />
+              {error && <p className="text-primary small mt-1">{error}</p>}
+            </div>
+          ) : (
+            <MemoriesSection />
+          )}
         </main>
       </div>
     </>

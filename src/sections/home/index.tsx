@@ -1,49 +1,19 @@
-import React from "react";
-import { Button } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 
-interface HomeSectionProps {
-  currentSection: number;
-  scrollToSection: (index: number) => void;
-}
-
-const HomeSection = ({ currentSection, scrollToSection }: HomeSectionProps) => {
+const HomeSection = () => {
   return (
-    <section
-      id="home"
-      className={`section section-0 ${currentSection === 0 ? "active" : ""}`}
-      data-aos="fade-down"
-    >
+    <section id="home" className={`section section-0`} data-aos="fade-down">
       <Container className="text-center">
-        <div className="big-x mt-md-5" data-aos="fade-down">
-          X
-        </div>
         <h1 className="display-3 hero-title" data-aos="fade-down">
-          Architects of Tomorrow
+          Happy Birthday, My Love - My Forever Sunshine
         </h1>
         <p className="lead mx-auto mb-5 section-lead" data-aos="fade-down">
-          We craft bold digital experiences with precision, performance, and
-          minimalist elegance. Where vision meets execution, Xelvian transforms
-          ideas into extraordinary realities.
+          Today the world celebrates you, but I celebrate you every single day.
+          You are my laughter, my calm, my chaos, and my greatest blessing. May
+          this year bring you the happiness you've already given me a thousand
+          times over. Here's a little gift - a collection of our memories,
+          wrapped in love, just for you.
         </p>
-
-        <div
-          className="d-flex gap-3 justify-content-center flex-wrap"
-          data-aos="fade-down"
-        >
-          <Button
-            onClick={() => scrollToSection(1)}
-            className="btn custom-btn btn-primary-custom rounded-0 border-2 py-3 px-5"
-          >
-            Our Services
-          </Button>
-          <Button
-            onClick={() => scrollToSection(2)}
-            className="btn custom-btn btn-secondary-custom rounded-0 border-2 py-3 px-5"
-          >
-            Meet Our Team
-          </Button>
-        </div>
       </Container>
     </section>
   );

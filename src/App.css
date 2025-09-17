@@ -1,72 +1,24 @@
-/* ==========================================================================
-   XELVIAN — App.css (refactored)
-   --------------------------------------------------------------------------
-   Sections:
-   0) Design tokens
-   1) Base & layout
-   2) Cursor
-   3) Navbar & offcanvas
-   4) Sections (scaffolding + variants)
-   5) Typography
-   6) Buttons
-   7) Cards (services, team)
-   8) Forms
-   9) Nav dots
-   10) Starry background
-   11) Responsive
-   ========================================================================== */
-
-/* 0) DESIGN TOKENS -------------------------------------------------------- */
 :root {
-  --bg: #000;
-  --fg: #fff;
-  --fg-muted: rgba(255, 255, 255, 0.8);
-  --fg-subtle: rgba(255, 255, 255, 0.6);
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.3);
-  --frost: rgba(0, 0, 0, 0.2);
+  --bg: #1a001a; /* dark romantic background */
+  --fg: #fff0f5; /* soft white / lavender blush text */
+  --fg-muted: rgba(255, 240, 245, 0.7);
+  --fg-subtle: rgba(255, 240, 245, 0.5);
+  --border: rgba(255, 182, 193, 0.3); /* soft pink border */
+  --border-strong: rgba(255, 182, 193, 0.6);
+  --primary: #ff758c;
+  --primary-light: #ff7eb3;
+  --secondary: #ffb6c1;
+  --accent: #ffe4e1;
+  --frost: rgba(255, 192, 203, 0.2); /* light pink overlay/frost */
   --blur: 10px;
-  --navbar-offset: 7rem; /* section padding to clear fixed navbar */
-}
-
-/* 1) BASE & LAYOUT -------------------------------------------------------- */
-@font-face {
-  font-family: "Neo Tech";
-  src: url("/fonts/neo-tech/NeoTech-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Neo Tech";
-  src: url("/fonts/neo-tech/NeoTech-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Neo Tech";
-  src: url("/fonts/neo-tech/NeoTech-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Neo Tech";
-  src: url("/fonts/neo-tech/NeoTech-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  --navbar-offset: 7rem;
+  --white: #fff;
 }
 
 html,
 body,
 #root {
   min-height: 100%;
-  background: var(--bg);
 }
 
 html,
@@ -80,7 +32,6 @@ body {
   color: var(--fg);
   overflow-y: auto;
   overscroll-behavior-y: contain;
-  cursor: none;
 }
 
 * {
@@ -88,186 +39,115 @@ body {
 }
 
 .page-root {
-  background: var(--bg);
   color: var(--fg);
   min-height: 100%;
   overflow: visible;
 }
 
-/* 2) CUSTOM CURSOR -------------------------------------------------------- */
-.cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.2s ease;
-  mix-blend-mode: difference;
-}
-.cursor.hover {
-  transform: scale(2);
-}
-
-/* 3) NAVBAR & OFFCANVAS --------------------------------------------------- */
-.custom-navbar {
-  background: var(--frost) !important;
-  backdrop-filter: blur(var(--blur));
-  border-bottom: 1px solid var(--border);
-}
-
-.brand {
-  font-size: 1.8rem;
-  font-weight: 100;
-  color: var(--fg) !important;
-  letter-spacing: 3px;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  cursor: pointer;
-}
-
-.logo-x {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--fg), #ccc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 300;
-  font-size: 1.5rem;
-  color: var(--bg);
-  border-radius: 2px;
-  transition: transform 0.3s ease;
-}
-.brand:hover .logo-x {
-  transform: rotate(90deg);
-}
-
-.nav-link-custom {
-  color: var(--fg-subtle) !important;
-  transition: all 0.3s ease;
-  font-weight: 300;
-  letter-spacing: 1px;
-  position: relative;
-}
-.nav-link-custom::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 1px;
-  background: var(--fg);
-  transition: width 0.3s ease;
-}
-.nav-link-custom:hover,
-.nav-link-custom.active {
-  color: var(--fg) !important;
-}
-.nav-link-custom:hover::after,
-.nav-link-custom.active::after {
-  width: 100%;
-}
-
-/* Offcanvas (mobile menu) */
-.offcanvas.bg-black {
-  background: rgba(0, 0, 0, 0.92) !important;
-}
-.offcanvas .nav-link-custom {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-.offcanvas .nav-link-custom:hover,
-.offcanvas .nav-link-custom.active {
-  color: var(--fg) !important;
-}
-
-/* 4) SECTIONS ------------------------------------------------------------- */
-.main-container {
-  /* normal flow now */
-}
-
 .section {
-  /* natural height, but ensure a strong baseline on tall viewports */
+  color: var(--bg);
   min-height: min(100svh, 900px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   position: relative;
-  overflow: visible; /* content may grow beyond baseline */
+  overflow: visible;
   padding-top: var(--navbar-offset);
   scroll-margin-top: calc(var(--navbar-offset) - 1rem);
-  background: var(--bg);
   padding-bottom: 4rem;
 }
 
-/* Background variants */
-.section-0 {
-  justify-content: center;
-  padding-top: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.05) 0%,
-    #000 70%
-  );
-}
-.section-1 {
-  background: linear-gradient(135deg, rgba(50, 50, 50, 0.1) 0%, #000 100%);
-}
-.section-2 {
-  background: linear-gradient(-45deg, rgba(30, 30, 30, 0.3) 0%, #000 100%);
-}
-.section-3 {
-  background: radial-gradient(
-    ellipse at top,
-    rgba(40, 40, 40, 0.2) 0%,
-    #000 70%
-  );
-}
-.section-4 {
-  background: linear-gradient(180deg, rgba(20, 20, 20, 0.4) 0%, #000 100%);
+/* Polaroid Card */
+.polaroid-card {
+  background: var(--white);
+  border-bottom-width: 50px;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px var(--secondary);
+  overflow: hidden;
+  position: relative;
+  min-width: 400px;
+  max-width: 90%;
+  cursor: grab;
+  animation: polaroid-pulse 3s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 5) TYPOGRAPHY ----------------------------------------------------------- */
-.hero-title {
-  font-weight: 100;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, var(--fg) 0%, #999 50%, var(--fg) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.polaroid-card:hover {
+  transform: scale(1.05) rotate(0deg);
+  box-shadow: 0 20px 40px var(--accent);
 }
-.section-lead {
+
+.polaroid-img {
+  height: 500px;
+  aspect-ratio: 1/1;
+  display: block;
+  object-fit: contain;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+  background: var(--white);
+}
+
+@keyframes polaroid-pulse {
+  0% {
+    transform: scale(1) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: scale(1.05) rotate(var(--rotate, 0deg));
+  }
+  100% {
+    transform: scale(1) rotate(var(--rotate, 0deg));
+  }
+}
+
+.romantic-btn {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff758c);
+  color: #fff;
+  font-weight: 600;
   font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--fg-muted);
-  max-width: 900px;
-}
-.letter-1 {
-  letter-spacing: 1px;
-}
-.letter-2 {
-  letter-spacing: 2px;
-}
-
-.big-x {
-  width: 200px;
-  height: 200px;
-  background: linear-gradient(135deg, var(--fg), #888);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 100;
-  font-size: 10rem;
-  color: #000;
-  border-radius: 4px;
-  margin: 0 auto 3rem;
-  animation: pulse 3s ease-in-out infinite;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--primary);
 }
+
+.romantic-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 120, 150, 0.8);
+}
+
+.romantic-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.romantic-btn:hover::before {
+  top: 0;
+  left: 0;
+}
+
 @keyframes pulse {
   0%,
   100% {
@@ -278,329 +158,48 @@ body {
   }
 }
 
-/* 6) BUTTONS -------------------------------------------------------------- */
-.custom-btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  font-weight: 300;
-  letter-spacing: 1px;
-  border-radius: 0;
-}
-.custom-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  left: -100%;
-  transition: left 0.6s ease;
-}
-.custom-btn:hover::before {
-  left: 100%;
+.romantic-btn {
+  animation: pulse 2s infinite;
 }
 
-.btn-primary-custom {
-  background: var(--fg);
-  color: #000;
-  border: 2px solid var(--fg);
-}
-.btn-primary-custom:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-3px);
-  border-color: var(--fg) !important; /* white border */
-  color: #000;
-}
-.btn-secondary-custom {
-  background: transparent;
-  color: var(--fg);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  font-weight: 400;
-}
-.btn-secondary-custom:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--fg);
-  transform: translateY(-3px);
-}
-.btn-sending {
-  background: rgba(255, 255, 255, 0.5) !important;
-  color: #000 !important;
+h5 {
+  color: var(--primary);
 }
 
-/* Remove blue focus/active highlights on buttons */
-button,
-.custom-btn,
-.btn-primary-custom,
-.btn-secondary-custom {
-  cursor: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  font-weight: 400 !important;
+p {
+  color: var(--primary-light);
 }
 
-button:focus,
-button:active,
-.custom-btn:focus,
-.custom-btn:active,
-.btn-primary-custom:focus,
-.btn-primary-custom:active,
-.btn-secondary-custom:focus,
-.btn-secondary-custom:active {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: inherit !important; /* prevents browser color flash */
-  color: inherit !important;
-  font-weight: 400 !important;
+.border-romantic {
+  border: 2px solid var(--primary);
 }
 
-button::-moz-focus-inner {
-  border: 0;
-  font-weight: 400 !important;
+.border-romantic:hover {
+  border: 2px solid var(--primary);
+  outline: none;
+  box-shadow: 0 0 10px var(--primary);
 }
 
-/* 7) CARDS (SERVICES & TEAM) --------------------------------------------- */
-.service-card,
-.team-member {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.service-card::before,
-.team-member::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s ease, left 0.6s ease;
-}
-.service-card:hover,
-.team-member:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--border-strong);
-}
-.service-card:hover::before,
-.team-member:hover::before {
-  transform: translateX(100%);
+.border-romantic:focus {
+  border: 2px solid var(--primary);
+  outline: none;
+  box-shadow: 0 0 10px var(--primary);
 }
 
-/* Service icon */
-.service-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  font-size: 1.8rem;
-  color: var(--fg);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.service-icon::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-.service-card:hover .service-icon {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-}
-.service-card:hover .service-icon::before {
-  transform: translateX(100%);
+input::placeholder {
+  color: var(--primary) !important;
+  opacity: 0.8 !important;
+  font-size: 0.8rem !important;
 }
 
-/* Team avatar */
-.member-avatar {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 2rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  background: linear-gradient(135deg, var(--fg), #666);
-  position: relative;
-  overflow: hidden;
-}
-.member-avatar::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  animation: rotate 4s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.team-member:hover .member-avatar::after {
-  opacity: 1;
-}
-@keyframes rotate {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-primary {
+  color: var(--primary) !important;
 }
 
-/* 8) FORMS ---------------------------------------------------------------- */
-.form-control-dark {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: var(--fg) !important;
-  backdrop-filter: blur(10px);
-}
-.form-control-dark:focus {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-  box-shadow: none !important;
-  transform: translateY(-2px);
-}
-.form-label-light {
-  color: var(--fg-muted);
-  font-weight: 300;
-  letter-spacing: 1px;
+.text-primary-light {
+  color: var(--primary-light) !important;
 }
 
-/* 9) NAV DOTS ------------------------------------------------------------- */
-.nav-dots {
-  position: fixed;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  z-index: 1000;
-}
-.nav-dot {
-  width: 4px;
-  height: 30px;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  transition: all 0.4s ease;
-  position: relative;
-}
-.nav-dot.active {
-  background: var(--fg);
-  width: 6px;
-}
-.nav-dot::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 1px;
-  background: var(--fg);
-  transition: width 0.3s ease;
-}
-.nav-dot:hover::after {
-  width: 20px;
-}
-
-/* 10) STARRY BACKGROUND --------------------------------------------------- */
-.stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-.star {
-  position: absolute;
-  background: var(--fg);
-  border-radius: 50%;
-  animation: twinkle 3s infinite;
-  opacity: 0.75;
-}
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.2);
-  }
-}
-
-/* 11) RESPONSIVE ---------------------------------------------------------- */
-@media (max-width: 767.98px) {
-  body {
-    cursor: auto;
-  }
-  .cursor {
-    display: none;
-  }
-
-  .nav-dots {
-    right: 1rem;
-    gap: 0.8rem;
-  }
-  .nav-dot {
-    width: 3px;
-    height: 20px;
-  }
-
-  .section {
-    padding-top: 5rem;
-  }
-  .section-0 {
-    padding-top: 7rem;
-  } /* extra breathing room for hero */
-
-  .brand {
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-  }
-  .logo-x {
-    width: 35px;
-    height: 35px;
-    font-size: 1.3rem;
-  }
-
-  .big-x {
-    width: 150px;
-    height: 150px;
-    font-size: 7rem;
-  }
+.text-secondary {
+  color: var(--secondary) !important;
 }
