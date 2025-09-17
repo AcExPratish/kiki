@@ -19,8 +19,7 @@ const getTargetSep21 = () => {
 const App = () => {
   const [targetDate] = React.useState(getTargetSep21);
   const [isDate, setIsDate] = React.useState(
-    true
-    // () => Date.now() >= targetDate.getTime()
+    () => Date.now() >= targetDate.getTime()
   );
   const [error, setError] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
