@@ -24,7 +24,7 @@ import spiderCouple from "/photos/spider-couple.png";
 import queen from "/photos/queen.png";
 import cutiePie from "/photos/cutie-pie.png";
 import cutestPictureTogether from "/photos/cutest-picture-together.png";
-import babeHeroinePic from "/photos/babe-heroine-pic.png";
+import babeHeroinePic from "/photos/babe-heorine-pic.png";
 import giftsForMyKiki from "/photos/gifts-for-my-kiki.png";
 import fromTheTop from "/photos/from-the-top.png";
 
