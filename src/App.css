@@ -1,0 +1,205 @@
+:root {
+  --bg: #1a001a; /* dark romantic background */
+  --fg: #fff0f5; /* soft white / lavender blush text */
+  --fg-muted: rgba(255, 240, 245, 0.7);
+  --fg-subtle: rgba(255, 240, 245, 0.5);
+  --border: rgba(255, 182, 193, 0.3); /* soft pink border */
+  --border-strong: rgba(255, 182, 193, 0.6);
+  --primary: #ff758c;
+  --primary-light: #ff7eb3;
+  --secondary: #ffb6c1;
+  --accent: #ffe4e1;
+  --frost: rgba(255, 192, 203, 0.2); /* light pink overlay/frost */
+  --blur: 10px;
+  --navbar-offset: 7rem;
+  --white: #fff;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html,
+body {
+  height: auto;
+}
+
+body {
+  font-family: "Neo Tech", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: var(--fg);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-root {
+  color: var(--fg);
+  min-height: 100%;
+  overflow: visible;
+}
+
+.section {
+  color: var(--bg);
+  min-height: min(100svh, 900px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: visible;
+  padding-top: var(--navbar-offset);
+  scroll-margin-top: calc(var(--navbar-offset) - 1rem);
+  padding-bottom: 4rem;
+}
+
+/* Polaroid Card */
+.polaroid-card {
+  background: var(--white);
+  border-bottom-width: 50px;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px var(--secondary);
+  overflow: hidden;
+  position: relative;
+  min-width: 400px;
+  max-width: 90%;
+  cursor: grab;
+  animation: polaroid-pulse 3s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polaroid-card:hover {
+  transform: scale(1.05) rotate(0deg);
+  box-shadow: 0 20px 40px var(--accent);
+}
+
+.polaroid-img {
+  height: 500px;
+  aspect-ratio: 1/1;
+  display: block;
+  object-fit: contain;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+  background: var(--white);
+}
+
+@keyframes polaroid-pulse {
+  0% {
+    transform: scale(1) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: scale(1.05) rotate(var(--rotate, 0deg));
+  }
+  100% {
+    transform: scale(1) rotate(var(--rotate, 0deg));
+  }
+}
+
+.romantic-btn {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff758c);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--primary);
+}
+
+.romantic-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 120, 150, 0.8);
+}
+
+.romantic-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.romantic-btn:hover::before {
+  top: 0;
+  left: 0;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.romantic-btn {
+  animation: pulse 2s infinite;
+}
+
+h5 {
+  color: var(--primary);
+}
+
+p {
+  color: var(--primary-light);
+}
+
+.border-romantic {
+  border: 2px solid var(--primary);
+}
+
+.border-romantic:hover {
+  border: 2px solid var(--primary);
+  outline: none;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.border-romantic:focus {
+  border: 2px solid var(--primary);
+  outline: none;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+input::placeholder {
+  color: var(--primary) !important;
+  opacity: 0.8 !important;
+  font-size: 0.8rem !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-primary-light {
+  color: var(--primary-light) !important;
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
