@@ -26,7 +26,7 @@ const App = () => {
 
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (e.target.value === "12/19/2023") {
+    if (e.target.value === "12/19/2022") {
       setViewContent(true);
     } else {
       setError("Wrong! Try again! 😔");
@@ -85,7 +85,7 @@ const App = () => {
             </div>
           )}
 
-          {isDate && !viewContent && <MemoriesSection />}
+          {isDate && viewContent && <MemoriesSection />}
         </main>
       </div>
     </>
