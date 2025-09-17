@@ -74,7 +74,7 @@ const App = () => {
               <input
                 id="password"
                 name="password"
-                type="password"
+                type="text"
                 placeholder="Hint: It's a date"
                 value={password}
                 onChange={handlePassword}
