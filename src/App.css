@@ -203,3 +203,8 @@ input::placeholder {
 .text-secondary {
   color: var(--secondary) !important;
 }
+
+.animate-pulse {
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}

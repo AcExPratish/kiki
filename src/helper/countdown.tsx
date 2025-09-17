@@ -1,16 +1,30 @@
+// src/helper/countdown.tsx
 import React from "react";
 
-type CountdownProps = { target: Date };
+type CountdownProps = {
+  target: Date;
+  onComplete?: () => void; // NEW
+};
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-export default function Countdown({ target }: CountdownProps) {
+export default function Countdown({ target, onComplete }: CountdownProps) {
   const [now, setNow] = React.useState(() => new Date());
+  const doneRef = React.useRef(false);
 
   React.useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
+    const tick = () => {
+      const diff = target.getTime() - Date.now();
+      if (diff <= 0 && !doneRef.current) {
+        doneRef.current = true;
+        onComplete?.(); // notify App once
+      }
+      setNow(new Date());
+    };
+    tick(); // run immediately
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [target, onComplete]);
 
   const diff = Math.max(0, target.getTime() - now.getTime());
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));

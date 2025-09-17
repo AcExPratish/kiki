@@ -7,28 +7,22 @@ import "./App.css";
 import MemoriesSection from "./sections/memories";
 import Countdown from "./helper/countdown";
 
-const checkDate = () => {
-  const date = new Date();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-
-  return month === 8 && day === 21 && hour === 12 && minute === 0;
-};
-
 const getTargetSep21 = () => {
   const now = new Date();
-  const target = new Date(now.getFullYear(), 8, 21, 12, 0, 0);
-  return now > target ? new Date(now.getFullYear(), 8, 21, 12, 0, 0) : target;
+  const thisYear = new Date(now.getFullYear(), 8, 21, 12, 0, 0);
+  return now > thisYear
+    ? new Date(now.getFullYear(), 8, 21, 12, 0, 0)
+    : thisYear;
 };
-const targetDate = getTargetSep21();
 
 const App = () => {
-  const isDate = checkDate();
-  const [viewContent, setViewContent] = React.useState<boolean>(false);
-  const [password, setPassword] = React.useState<string>("");
+  const [targetDate] = React.useState(getTargetSep21);
+  const [isDate, setIsDate] = React.useState(
+    () => Date.now() >= targetDate.getTime()
+  );
   const [error, setError] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+  const [viewContent, setViewContent] = React.useState<boolean>(false);
 
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -58,8 +52,18 @@ const App = () => {
           {!isDate && (
             <div className="d-flex align-items-center justify-content-center section w-100 text-primary">
               <span>You are way too early to view this content!</span>
-              <span>Please wait until Sunday, September 21st, 2025.</span>
-              <Countdown target={targetDate} />
+              <span>
+                Please wait until Sunday, September 21st, 2025, 12:00 PM.
+              </span>
+              <span className="mt-2">
+                <Countdown
+                  target={targetDate}
+                  onComplete={() => setIsDate(true)}
+                />
+              </span>
+              <span className="mt-2 animate-pulse" style={{ fontSize: "4rem" }}>
+                ❤️
+              </span>
             </div>
           )}
 
