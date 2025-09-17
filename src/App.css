@@ -28,8 +28,7 @@ body {
 }
 
 body {
-  font-family: "Neo Tech", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: "Dancing Script", cursive;
   color: var(--fg);
   overflow-y: auto;
   overscroll-behavior-y: contain;
