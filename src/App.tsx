@@ -26,7 +26,7 @@ const App = () => {
 
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (e.target.value === "1219") {
+    if (e.target.value === "12/19/2023") {
       setViewContent(true);
     } else {
       setError("Wrong! Try again! 😔");
@@ -50,9 +50,11 @@ const App = () => {
       <div className="page-root">
         <main className="main-container">
           {!isDate && (
-            <div className="d-flex align-items-center justify-content-center section w-100 text-primary">
-              <span>You are way too early to view this content!</span>
-              <span>
+            <div className="d-flex flex-wrap align-items-center justify-content-center section w-100 text-primary">
+              <span className="text-center">
+                You are way too early to view this content!
+              </span>
+              <span className="text-center">
                 Please wait until Sunday, September 21st, 2025, 12:00 PM.
               </span>
               <span className="mt-2">
@@ -67,7 +69,7 @@ const App = () => {
             </div>
           )}
 
-          {!viewContent && (
+          {isDate && !viewContent && (
             <div className="d-flex align-items-center justify-content-center section w-100">
               <input
                 id="password"
