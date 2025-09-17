@@ -1,3 +1,4 @@
+//@ts-expect-error - React is not used in this file
 import React from "react";
 import { Container } from "react-bootstrap";
 
